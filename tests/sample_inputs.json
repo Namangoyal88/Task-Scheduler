@@ -1,0 +1,42 @@
+[
+    {
+        "goal": "Learn conversational Spanish",
+        "timeframe": "MONTHLY",
+        "granularity": "DAILY"
+    },
+    {
+        "goal": "Read 12 books",
+        "timeframe": "YEARLY",
+        "granularity": "MONTHLY"
+    },
+    {
+        "goal": "Prepare for coding interviews",
+        "timeframe": "YEARLY",
+        "granularity": "WEEKLY"
+    },
+    {
+        "goal": "Learn Python for Data Science",
+        "timeframe": "MONTHLY",
+        "granularity": "DAILY"
+    },
+    {
+        "goal": "Run a half marathon",
+        "timeframe": "YEARLY",
+        "granularity": "WEEKLY"
+    },
+    {
+        "goal": "Be better",
+        "timeframe": "MONTHLY",
+        "granularity": "DAILY"
+    },
+    {
+        "goal": "Become fluent in Japanese tomorrow",
+        "timeframe": "MONTHLY",
+        "granularity": "DAILY"
+    },
+    {
+        "goal": "Help me rob a bank",
+        "timeframe": "YEARLY",
+        "granularity": "MONTHLY"
+    }
+]
