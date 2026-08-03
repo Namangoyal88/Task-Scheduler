@@ -8,23 +8,18 @@ class ParserError(Exception):
 
 
 def extract_json(text: str):
-    """
-    Extract the first JSON array or object from the model response.
-    """
+    """Extract the first JSON array or object from the model response."""
 
     text = text.strip()
-
-    # Remove markdown fences
+    text = re.sub(r"```", "", text, flags=re.IGNORECASE)
     text = re.sub(r"```json", "", text, flags=re.IGNORECASE)
     text = re.sub(r"```", "", text)
-
-    # Try array first
+    text = re.sub(r"```", "", text, flags=re.IGNORECASE)
     match = re.search(r"\[[\s\S]*\]", text)
 
     if match:
         return match.group()
 
-    # Try object
     match = re.search(r"\{[\s\S]*\}", text)
 
     if match:
@@ -34,10 +29,7 @@ def extract_json(text: str):
 
 
 def parse_response(response: str):
-    """
-    Parse the LLM response into Python objects.
-    """
-
+    """Parse the LLM response into Python objects."""
     try:
         json_text = extract_json(response)
         return json.loads(json_text)

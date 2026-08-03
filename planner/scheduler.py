@@ -3,9 +3,7 @@ from dateutil.relativedelta import relativedelta
 
 
 def expected_task_count(timeframe: str, granularity: str) -> int:
-    """
-    Returns the expected number of tasks.
-    """
+    """ Returns the expected number of tasks. """
 
     mapping = {
         ("MONTHLY", "DAILY"): 30,
@@ -23,11 +21,8 @@ def expected_task_count(timeframe: str, granularity: str) -> int:
 def generate_due_dates(
     timeframe: str,
     granularity: str,
-    start_date: str | None = None,
-):
-    """
-    Returns a list of ISO formatted due dates.
-    """
+    start_date: str | None = None,):
+    """ Returns a list of ISO formatted due dates. """
 
     if start_date:
         current = datetime.fromisoformat(start_date)

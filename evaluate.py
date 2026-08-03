@@ -25,16 +25,13 @@ def score_output(result):
     score = 0
     remarks = []
 
-    # Correct output
     score += 1
 
-    # Has tasks
     if len(tasks) > 0:
         score += 1
     else:
         remarks.append("No tasks generated")
 
-    # Unique titles
     titles = [task["title"].lower() for task in tasks]
 
     if len(titles) == len(set(titles)):
@@ -42,13 +39,11 @@ def score_output(result):
     else:
         remarks.append("Duplicate tasks")
 
-    # Due dates
     if all("dueDate" in task for task in tasks):
         score += 1
     else:
         remarks.append("Missing due dates")
 
-    # Titles
     if all(len(task["title"]) >= 5 for task in tasks):
         score += 1
     else:

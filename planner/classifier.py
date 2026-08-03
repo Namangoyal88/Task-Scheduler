@@ -1,18 +1,13 @@
 from groq import Groq
 from dotenv import load_dotenv
 import os
-
 load_dotenv()
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 MODEL = os.getenv("MODEL_NAME", "llama-3.3-70b-versatile")
 
-
 CLASSIFIER_PROMPT = """
-You are a goal classifier.
-
-Classify the user's goal into exactly ONE category.
-
+You are a goal classifier. Classify the user's goal into exactly ONE category.
 VALID
 - Specific and achievable.
 
@@ -31,53 +26,24 @@ Examples:
 HARMFUL
 - Requests involving violence, crime, self-harm, illegal activity or dangerous acts.
 
-Return ONLY one word.
-
-VALID
-VAGUE
-UNREALISTIC
-HARMFUL
-"""
+Return ONLY one word: VALID, VAGUE, UNREALISTIC, HARMFUL"""
 
 
 def classify_goal(goal: str, timeframe: str) -> str:
-    """
-    Returns one of:
-    VALID
-    VAGUE
-    UNREALISTIC
-    HARMFUL
-    """
-
+    """Returns one of: VALID VAGUE UNREALISTIC HARMFUL"""
     response = client.chat.completions.create(
         model=MODEL,
         temperature=0,
-        messages=[
-            {
+        messages=[{
                 "role": "system",
-                "content": CLASSIFIER_PROMPT,
-            },
+                "content": CLASSIFIER_PROMPT,},
             {
                 "role": "user",
-                "content": f"""
-Goal:
-{goal}
-
-Timeframe:
-{timeframe}
-""",
-            },
-        ],
-    )
+                "content": f"Goal:{goal} Timeframe:{timeframe}",},],)
 
     result = response.choices[0].message.content.strip().upper()
 
-    if result not in {
-        "VALID",
-        "VAGUE",
-        "UNREALISTIC",
-        "HARMFUL",
-    }:
+    if result not in {"VALID", "VAGUE", "UNREALISTIC", "HARMFUL",}:
         return "VALID"
 
     return result

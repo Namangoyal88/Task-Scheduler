@@ -11,40 +11,25 @@ def validate_tasks(
     expected_count: int,
     timeframe: str,
     granularity: str,
-    start_date: str | None = None,
-):
-    """
-    Validate and format the generated tasks.
-
+    start_date: str | None = None,):
+    
+    """ Validate and format the generated tasks.
     Returns:
-        [
-            {
-                "title": "...",
-                "dueDate": "2026-08-01"
-            }
-        ]
-    """
+        [{ "title": "...",  "dueDate": "2026-08-01" }] """
 
     if not isinstance(tasks, list):
         raise ValidationError("Output must be a list.")
 
     if len(tasks) != expected_count:
-        raise ValidationError(
-            f"Expected {expected_count} tasks but received {len(tasks)}."
-        )
+        raise ValidationError(f"Expected {expected_count} tasks but received {len(tasks)}.")
 
     titles = set()
 
-    due_dates = generate_due_dates(
-        timeframe=timeframe,
-        granularity=granularity,
-        start_date=start_date,
-    )
+    due_dates = generate_due_dates(timeframe = timeframe, granularity = granularity, start_date = start_date)
 
     final_tasks = []
 
     for i, task in enumerate(tasks):
-
         if not isinstance(task, dict):
             raise ValidationError("Each task must be an object.")
 
@@ -65,11 +50,6 @@ def validate_tasks(
 
         titles.add(key)
 
-        final_tasks.append(
-            {
-                "title": title,
-                "dueDate": due_dates[i],
-            }
-        )
+        final_tasks.append({"title": title,  "dueDate": due_dates[i],})
 
     return final_tasks
