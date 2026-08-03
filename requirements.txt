@@ -5,3 +5,10 @@ langchain_core
 langchain_community
 streamlit
 langchain_groq
+fastapi
+uvicorn
+python-dotenv
+pandas
+groq
+pydantic
+python-dateutil
