@@ -15,10 +15,7 @@ def score_output(result):
     """
 
     if result["status"] != "success":
-        return {
-            "score": 0,
-            "remarks": result["message"]
-        }
+        return { "score": 0,  "remarks": result["message"]  }
 
     tasks = result["tasks"]
 
@@ -39,6 +36,7 @@ def score_output(result):
     else:
         remarks.append("Duplicate tasks")
 
+    
     if all("dueDate" in task for task in tasks):
         score += 1
     else:
@@ -49,10 +47,7 @@ def score_output(result):
     else:
         remarks.append("Very short titles")
 
-    return {
-        "score": score,
-        "remarks": remarks
-    }
+    return {  "score": score,  "remarks": remarks  }
 
 
 def evaluate():

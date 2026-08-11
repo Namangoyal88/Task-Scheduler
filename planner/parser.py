@@ -8,24 +8,19 @@ class ParserError(Exception):
 
 
 def extract_json(text: str):
-    """Extract the first JSON array or object from the model response."""
+    text = re.sub(r"```json|```", "", text, flags=re.IGNORECASE).strip()
 
-    text = text.strip()
-    text = re.sub(r"```", "", text, flags=re.IGNORECASE)
-    text = re.sub(r"```json", "", text, flags=re.IGNORECASE)
-    text = re.sub(r"```", "", text)
-    text = re.sub(r"```", "", text, flags=re.IGNORECASE)
-    match = re.search(r"\[[\s\S]*\]", text)
+    decoder = json.JSONDecoder()
 
-    if match:
-        return match.group()
+    for i, ch in enumerate(text):
+        if ch in "[{":
+            try:
+                obj, end = decoder.raw_decode(text[i:])
+                return text[i:i+end]
+            except json.JSONDecodeError:
+                pass
 
-    match = re.search(r"\{[\s\S]*\}", text)
-
-    if match:
-        return match.group()
-
-    raise ParserError("No JSON found in model response.")
+    raise ParserError("No valid JSON found.")
 
 
 def parse_response(response: str):

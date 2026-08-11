@@ -38,17 +38,13 @@ class GoalPlanner:
             }
 
 
-        task_count = expected_task_count(
-            timeframe,
-            granularity,
-        )
+        task_count = expected_task_count( timeframe, granularity )
         
         tasks = self.llm.generate_tasks(
             goal = goal,
             timeframe = timeframe,
             granularity = granularity,
-            expected_tasks = task_count,
-        )
+            expected_tasks = task_count,)
 
         try:
 
@@ -57,8 +53,7 @@ class GoalPlanner:
                 expected_count = task_count,
                 timeframe = timeframe,
                 granularity = granularity,
-                start_date = start_date,
-            )
+                start_date = start_date,)
 
         except ValidationError as e:
 

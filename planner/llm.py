@@ -7,7 +7,7 @@ from planner.parser import parse_response, ParserError
 
 load_dotenv()
 
-MODEL = os.getenv("MODEL_NAME", "llama-3.3-70b-versatile")
+MODEL = os.getenv("MODEL_NAME", "qwen/qwen3.6-27b")
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
@@ -29,13 +29,10 @@ class LLMClient:
                     model = self.model,
                     temperature = 0.3,
                     messages = [
-                        {
-                            "role": "system",
-                            "content": SYSTEM_PROMPT,},
-                        {
-                            "role": "user",
-                            "content": prompt,},],
-                )
+                        {"role": "system",
+                        "content": SYSTEM_PROMPT,},
+                        {"role": "user",
+                        "content": prompt,},],)
 
                 content = response.choices[0].message.content
 

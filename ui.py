@@ -30,7 +30,7 @@ if st.button("Generate Plan", use_container_width=True):
         st.stop()
 
     with st.spinner("Generating plan..."):
-        result = planner.generate_plan( goal = goal, timeframe = timeframe, granularity = granularity, start_date = str(start_date))
+        result = planner.generate_plan(goal = goal, timeframe = timeframe, granularity = granularity, start_date = str(start_date))
 
 
     if result["status"] != "success":

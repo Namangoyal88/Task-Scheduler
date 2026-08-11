@@ -30,11 +30,11 @@ Return ONLY one word: VALID, VAGUE, UNREALISTIC, HARMFUL"""
 
 
 def classify_goal(goal: str, timeframe: str) -> str:
-    """Returns one of: VALID VAGUE UNREALISTIC HARMFUL"""
+    """ Returns one of: VALID VAGUE UNREALISTIC HARMFUL """
     response = client.chat.completions.create(
-        model=MODEL,
-        temperature=0,
-        messages=[{
+        model = MODEL,
+        temperature = 0,
+        messages = [{
                 "role": "system",
                 "content": CLASSIFIER_PROMPT,},
             {

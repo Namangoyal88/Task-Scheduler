@@ -26,8 +26,5 @@ Granularity: {granularity}
 Generate exactly {expected_tasks} tasks.
 Return ONLY JSON.
 
-Example:
-
-[
-    {{"title":"Learn greetings and introductions"}},
-    {{"title":"Practice present tense verbs"}}]"""
+Example:  [{{"title":"Learn greetings and introductions"}},
+           {{"title":"Practice present tense verbs"}}]"""
